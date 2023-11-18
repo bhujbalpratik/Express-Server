@@ -3,3 +3,9 @@ export const homecontrol = (req, res) => {
         title: "Home Page"
     })
 }
+
+export const aboutcontrol = (req, res) => {
+    res.render("about", {
+        title: "About Page"
+    })
+}

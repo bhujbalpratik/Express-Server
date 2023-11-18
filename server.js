@@ -5,7 +5,7 @@ import ejs from "ejs"
 
 import bodyParser from "body-parser"
 
-import { homecontrol } from "./controllers/server.controller.js"
+import { aboutcontrol, homecontrol } from "./controllers/server.controller.js"
 
 import UserRouter from "./router/user.router.js"
 
@@ -25,6 +25,8 @@ app.set("view engine", "ejs")
 app.set("views", "views")
 
 app.get('/', homecontrol)
+
+app.get('/about', aboutcontrol)
 
 app.use("/user", UserRouter)
 
