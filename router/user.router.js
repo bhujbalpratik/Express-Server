@@ -1,17 +1,22 @@
+import express from "express";
+import {
+  userGetLogin,
+  userGetRegister,
+  userHome,
+  userPostLogin,
+  userPostRegister,
+} from "../controllers/user.controller.js";
 
-import express from "express"
-import { userGetLogin, userGetRegister, userHome, userPostLogin, userPostRegister } from "../controllers/user.controller.js"
+const router = express.Router();
 
-const router = express.Router()
+router.get("/", userHome);
 
-router.get('/', userHome)
+router.get("/register", userGetRegister);
 
-router.get('/register', userGetRegister)
+router.post("/register", userPostRegister);
 
-router.post('/register', userPostRegister)
+router.get("/login", userGetLogin);
 
-router.get('/login', userGetLogin)
-
-router.post('/login', userPostLogin)
+router.post("/login", userPostLogin);
 
 export default router;
