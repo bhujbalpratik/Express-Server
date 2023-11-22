@@ -4,7 +4,11 @@ import ejs from "ejs";
 
 import bodyParser from "body-parser";
 
-import { aboutcontrol, homecontrol } from "./controllers/server.controller.js";
+import {
+  aboutcontrol,
+  contactcontrol,
+  homecontrol,
+} from "./controllers/server.controller.js";
 
 import UserRouter from "./router/user.router.js";
 
@@ -28,6 +32,8 @@ app.set("views", "views");
 app.get("/", homecontrol);
 
 app.get("/about", aboutcontrol);
+
+app.get("/contact", contactcontrol);
 
 app.use("/user", UserRouter);
 

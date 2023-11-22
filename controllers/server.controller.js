@@ -9,3 +9,9 @@ export const aboutcontrol = (req, res) => {
     title: "About Page",
   });
 };
+
+export const contactcontrol = (req, res) => {
+  res.render("contact", {
+    title: "Contact Page",
+  });
+};
