@@ -1,41 +1,42 @@
-import express from "express";
-
-import ejs from "ejs";
-
-import bodyParser from "body-parser";
+import express from "express"
+import { config } from "dotenv"
+import ejs from "ejs"
+import bodyParser from "body-parser"
 
 import {
   aboutcontrol,
   contactcontrol,
   homecontrol,
-} from "./controllers/server.controller.js";
+} from "./controllers/server.controller.js"
 
-import UserRouter from "./router/user.router.js";
+import UserRouter from "./router/user.router.js"
 
-import mongoose from "mongoose";
+import mongoose from "mongoose"
+
+config({ path: "./config/.env" })
 
 mongoose
-  .connect("mongodb://127.0.0.1:27017", { dbName: "Express_Practice_2" })
+  .connect(process.env.MONGO_URI, { dbName: "ExpressServer" })
   .then(() => console.log("Mongo Connected"))
-  .catch((err) => console.log(err));
+  .catch((err) => console.log(err))
 
-const PORT = 4000;
-const HOSTNAME = "localhost";
-const app = express();
+const PORT = process.env.PORT
+const HOSTNAME = "localhost"
+const app = express()
 
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: true }))
 
-app.set("view engine", "ejs");
+app.set("view engine", "ejs")
 
-app.set("views", "views");
+app.set("views", "views")
 
-app.get("/", homecontrol);
+app.get("/", homecontrol)
 
-app.get("/about", aboutcontrol);
+app.get("/about", aboutcontrol)
 
-app.get("/contact", contactcontrol);
+app.get("/contact", contactcontrol)
 
-app.use("/user", UserRouter);
+app.use("/user", UserRouter)
 
 const userSchema = new mongoose.Schema(
   {
@@ -54,10 +55,10 @@ const userSchema = new mongoose.Schema(
     },
   },
   { timestamps: true }
-);
+)
 
-export const User = mongoose.model("User", userSchema);
+export const User = mongoose.model("User", userSchema)
 
 app.listen(PORT, HOSTNAME, () => {
-  console.log(`Server is Working On http://${HOSTNAME}:${PORT}`);
-});
+  console.log(`Server is Working On http://${HOSTNAME}:${PORT}`)
+})
